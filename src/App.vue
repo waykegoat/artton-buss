@@ -24,6 +24,7 @@ useHead({
 <template>
   <RouterView v-if="isAdminRoute" />
   <div v-else class="app-shell">
+    <a class="skip-link" href="#main-content">К содержанию</a>
     <AppHeader />
     <main id="main-content">
       <RouterView />

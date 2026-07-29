@@ -15,5 +15,5 @@ export interface SessionPayload {
   nonce: string
 }
 
-export type LeadIntent = 'ceiling-measure' | 'tinting-consultation'
+export type { LeadIntent } from '../shared/lead'
 export type LeadStatus = 'new' | 'contacted' | 'completed' | 'spam'

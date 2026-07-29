@@ -1,3 +1,5 @@
+import type { LeadIntent } from '../../shared/lead'
+
 export const business = {
   name: 'Art Ton',
   phone: {
@@ -8,7 +10,7 @@ export const business = {
   coverageLabel: 'Заречный, Пенза и Пензенская область',
 } as const
 
-export type LeadIntent = 'ceiling-measure' | 'tinting-consultation'
+export type { LeadIntent } from '../../shared/lead'
 
 export const leadIntents = {
   'ceiling-measure': {

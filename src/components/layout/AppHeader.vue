@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
@@ -19,10 +19,12 @@ const navigation = computed(() => [
 function closeMenu(): void {
   isMenuOpen.value = false
 }
+
+watch(() => route.path, closeMenu)
 </script>
 
 <template>
-  <header class="site-header">
+  <header class="site-header" @keydown.esc="closeMenu">
     <div class="container site-header__inner">
       <RouterLink class="brand" to="/" aria-label="Art Ton — на главную" @click="closeMenu">
         <img src="/logo-hq.png" alt="" width="52" height="52" />
@@ -36,7 +38,7 @@ function closeMenu(): void {
         aria-controls="main-navigation"
         @click="isMenuOpen = !isMenuOpen"
       >
-        <span class="sr-only">Открыть меню</span>
+        <span class="sr-only">{{ isMenuOpen ? 'Закрыть меню' : 'Открыть меню' }}</span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
       </button>

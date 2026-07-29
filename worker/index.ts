@@ -1,4 +1,5 @@
 import { normalizePublicContent } from '../shared/content'
+import { cleanText, hasHoneypotValue, validateLead, type LeadPayload } from '../shared/lead'
 import { getPublicContent, savePublicContent } from './lib/content'
 import { json, methodNotAllowed, noContent, readJson, requireSameOrigin } from './lib/http'
 import {
@@ -16,9 +17,8 @@ import {
   verifyPassword,
 } from './lib/security'
 import { notifyTelegram } from './lib/telegram'
-import type { Env, LeadIntent, LeadStatus } from './types'
+import type { Env, LeadStatus } from './types'
 
-const allowedLeadIntents = new Set<LeadIntent>(['ceiling-measure', 'tinting-consultation'])
 const allowedLeadStatuses = new Set<LeadStatus>(['new', 'contacted', 'completed', 'spam'])
 
 interface LoginBody {
@@ -26,21 +26,8 @@ interface LoginBody {
   password?: unknown
 }
 
-interface LeadBody {
-  intent?: unknown
-  name?: unknown
-  phone?: unknown
-  comment?: unknown
-  consent?: unknown
-  company?: unknown
-}
-
 function clientIp(request: Request): string {
   return request.headers.get('cf-connecting-ip') ?? 'local'
-}
-
-function cleanText(value: unknown, maxLength: number): string {
-  return typeof value === 'string' ? value.trim().slice(0, maxLength) : ''
 }
 
 async function audit(
@@ -156,30 +143,18 @@ async function handleCreateLead(request: Request, env: Env): Promise<Response> {
   if (request.method !== 'POST') return methodNotAllowed()
   if (!requireSameOrigin(request)) return json({ error: 'Invalid origin' }, 403)
 
-  let body: LeadBody
+  let body: LeadPayload
   try {
-    body = await readJson<LeadBody>(request)
+    body = await readJson<LeadPayload>(request)
   } catch {
     return json({ error: 'Invalid request' }, 400)
   }
 
-  if (cleanText(body.company, 100)) return json({ accepted: true }, 201)
+  if (hasHoneypotValue(body)) return json({ accepted: true }, 201)
 
-  const intent = cleanText(body.intent, 40) as LeadIntent
-  const name = cleanText(body.name, 80)
-  const phone = cleanText(body.phone, 32)
-  const comment = cleanText(body.comment, 1_000)
-  const phoneDigits = phone.replaceAll(/\D/g, '')
-
-  if (
-    !allowedLeadIntents.has(intent) ||
-    name.length < 2 ||
-    phoneDigits.length < 10 ||
-    phoneDigits.length > 15 ||
-    body.consent !== true
-  ) {
-    return json({ error: 'Please check the form fields' }, 422)
-  }
+  const lead = validateLead(body)
+  if (!lead) return json({ error: 'Please check the form fields' }, 422)
+  const { intent, name, phone, comment } = lead
 
   const limitKey = await fingerprint(`lead|${clientIp(request)}`)
   if (!(await consumeLeadLimit(env, limitKey))) {

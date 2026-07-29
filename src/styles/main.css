@@ -94,6 +94,24 @@ h1 {
   border: 0;
 }
 
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  color: #fff;
+  background: var(--color-ink);
+  box-shadow: var(--shadow-soft);
+  transform: translateY(-150%);
+  transition: transform 160ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 .eyebrow {
   margin-bottom: 1rem;
   color: var(--color-primary-deep);
