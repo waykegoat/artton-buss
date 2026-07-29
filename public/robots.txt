@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /artton-buss/admin
+
+Sitemap: https://waykegoat.github.io/artton-buss/sitemap.xml

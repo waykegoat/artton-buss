@@ -4,6 +4,7 @@ import { onMounted, ref } from 'vue'
 
 import type { PublicContent } from '../../../shared/content'
 import { useAdminDraftStore } from '@/stores/adminDraft'
+import { apiUrl, assetUrl, isDemoBuild } from '@/utils/url'
 
 type LeadStatus = 'new' | 'contacted' | 'completed' | 'spam'
 
@@ -56,7 +57,7 @@ async function request<T>(url: string, options: RequestInit = {}): Promise<T> {
   headers.set('accept', 'application/json')
   if (options.body) headers.set('content-type', 'application/json')
 
-  const response = await globalThis.fetch(url, {
+  const response = await globalThis.fetch(apiUrl(url), {
     ...options,
     credentials: 'same-origin',
     headers,
@@ -85,6 +86,11 @@ async function loadDashboard(loadContent = true): Promise<void> {
 }
 
 async function checkSession(): Promise<void> {
+  if (isDemoBuild) {
+    loading.value = false
+    return
+  }
+
   try {
     await request('/api/auth/session')
     authenticated.value = true
@@ -100,6 +106,11 @@ async function checkSession(): Promise<void> {
 }
 
 async function login(): Promise<void> {
+  if (isDemoBuild) {
+    error.value = 'В демо-версии вход отключён. Рабочая панель подключается вместе с сервером.'
+    return
+  }
+
   actionPending.value = true
   error.value = ''
   try {
@@ -183,7 +194,7 @@ onMounted(() => {
   <section v-else-if="!authenticated" class="admin-login">
     <div class="admin-login__panel">
       <RouterLink class="brand" to="/" aria-label="Art Ton — на главную">
-        <img src="/logo-hq.png" alt="" width="52" height="52" />
+        <img :src="assetUrl('/logo-hq.png')" alt="" width="52" height="52" />
         <span>Art Ton</span>
       </RouterLink>
       <div>

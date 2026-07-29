@@ -6,6 +6,7 @@ import PortfolioCard from '@/components/portfolio/PortfolioCard.vue'
 import PageIntro from '@/components/ui/PageIntro.vue'
 import type { PortfolioCategory } from '@/content/site'
 import { portfolio } from '@/content/site'
+import { assetUrl } from '@/utils/url'
 
 type Filter = 'all' | PortfolioCategory
 
@@ -39,8 +40,13 @@ useSeoMeta({
   >
     <template #aside>
       <div class="portfolio-intro-stack" aria-hidden="true">
-        <img src="/images/tracklight/tracklight4.jpg" alt="" width="480" height="360" />
-        <img src="/images/tonirovka/tonirovka4.jpg" alt="" width="360" height="480" />
+        <img
+          :src="assetUrl('/images/tracklight/tracklight4.jpg')"
+          alt=""
+          width="480"
+          height="360"
+        />
+        <img :src="assetUrl('/images/tonirovka/tonirovka4.jpg')" alt="" width="360" height="480" />
       </div>
     </template>
   </PageIntro>

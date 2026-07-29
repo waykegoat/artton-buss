@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, reactive, ref, watch } from 'vue'
 
-import { leadIntents, type LeadIntent } from '@/config/business'
+import { business, leadIntents, type LeadIntent } from '@/config/business'
+import { apiUrl, isDemoBuild } from '@/utils/url'
 
 const props = withDefaults(
   defineProps<{
@@ -21,7 +22,7 @@ const form = reactive({
   company: '',
 })
 
-const status = ref<'idle' | 'submitting' | 'success' | 'error'>('idle')
+const status = ref<'idle' | 'submitting' | 'success' | 'error' | 'demo'>('idle')
 const selectedIntent = computed(() => leadIntents[form.intent])
 
 watch(
@@ -32,10 +33,15 @@ watch(
 )
 
 async function submit(): Promise<void> {
+  if (isDemoBuild) {
+    status.value = 'demo'
+    return
+  }
+
   status.value = 'submitting'
 
   try {
-    const response = await globalThis.fetch('/api/leads', {
+    const response = await globalThis.fetch(apiUrl('/api/leads'), {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(form),
@@ -115,6 +121,11 @@ async function submit(): Promise<void> {
     </p>
     <p v-else-if="status === 'error'" class="form-status form-status--error" role="alert">
       Пока не удалось отправить заявку. Позвоните нам или попробуйте ещё раз.
+    </p>
+    <p v-else-if="status === 'demo'" class="form-status form-status--success" role="status">
+      В демо-версии онлайн-заявки не отправляются. Позвоните:
+      <a :href="business.phone.href">{{ business.phone.display }}</a
+      >.
     </p>
   </form>
 </template>

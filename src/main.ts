@@ -10,6 +10,7 @@ export const createApp = ViteSSG(
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- Vue SFC typing is supplied by vue-tsc.
   App,
   {
+    base: import.meta.env.BASE_URL,
     routes,
     scrollBehavior: (to, from, savedPosition) => {
       if (savedPosition) return savedPosition

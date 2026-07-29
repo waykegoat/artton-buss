@@ -1,3 +1,5 @@
+import { assetUrl } from '@/utils/url'
+
 export type ServiceCategory = 'ceilings' | 'tinting'
 export type PortfolioCategory = 'track' | 'two-level' | 'photo-print' | 'tinting'
 
@@ -26,7 +28,7 @@ export const services: Service[] = [
     category: 'ceilings',
     title: 'Классические потолки',
     description: 'Лаконичная ровная поверхность для жилых и коммерческих помещений.',
-    image: '/images/2layer/2layer2.jpg',
+    image: assetUrl('/images/2layer/2layer2.jpg'),
     imageAlt: 'Светлый натяжной потолок с точечным освещением',
     features: [
       'Матовые и сатиновые фактуры',
@@ -39,7 +41,7 @@ export const services: Service[] = [
     category: 'ceilings',
     title: 'Трековое освещение',
     description: 'Гибкий сценарий света, который можно менять после завершения ремонта.',
-    image: '/images/tracklight/tracklight1.jpg',
+    image: assetUrl('/images/tracklight/tracklight1.jpg'),
     imageAlt: 'Натяжной потолок с чёрной трековой системой и светильниками',
     features: ['Встроенные треки', 'Поворотные светильники', 'Сценарии общего и акцентного света'],
   },
@@ -48,7 +50,7 @@ export const services: Service[] = [
     category: 'ceilings',
     title: 'Двухуровневые конструкции',
     description: 'Выразительная геометрия, зонирование пространства и сочетание фактур.',
-    image: '/images/2layer/2layer1.jpg',
+    image: assetUrl('/images/2layer/2layer1.jpg'),
     imageAlt: 'Двухуровневый потолок с тёмной рамой по периметру',
     features: ['Зонирование помещения', 'Комбинация цветов', 'Фигурные решения'],
   },
@@ -57,7 +59,7 @@ export const services: Service[] = [
     category: 'ceilings',
     title: 'Фотопечать',
     description: 'Индивидуальное изображение на полотне для яркого интерьерного акцента.',
-    image: '/images/photoprint/photoprint1.jpg',
+    image: assetUrl('/images/photoprint/photoprint1.jpg'),
     imageAlt: 'Натяжной потолок с художественной фотопечатью',
     features: [
       'Индивидуальный сюжет',
@@ -70,7 +72,7 @@ export const services: Service[] = [
     category: 'tinting',
     title: 'Тонировка окон',
     description: 'Плёнка для окон дома, квартиры, офиса, балкона или веранды.',
-    image: '/images/tonirovka/tonirovka1.jpg',
+    image: assetUrl('/images/tonirovka/tonirovka1.jpg'),
     imageAlt: 'Тонированное панорамное окно частного дома',
     features: ['Зеркальные решения', 'Больше приватности', 'Снижение яркости солнечного света'],
   },
@@ -82,7 +84,7 @@ export const portfolio: PortfolioItem[] = [
     category: 'track',
     title: 'Геометрическая трековая система',
     description: 'Комбинация трековых и точечных светильников.',
-    image: '/images/tracklight/tracklight1.jpg',
+    image: assetUrl('/images/tracklight/tracklight1.jpg'),
     imageAlt: 'Геометрическая трековая система на белом потолке',
   },
   {
@@ -90,7 +92,7 @@ export const portfolio: PortfolioItem[] = [
     category: 'tinting',
     title: 'Зеркальная плёнка 15%',
     description: 'Тонировка панорамного окна частного дома.',
-    image: '/images/tonirovka/tonirovka1.jpg',
+    image: assetUrl('/images/tonirovka/tonirovka1.jpg'),
     imageAlt: 'Панорамное окно с зеркальной тонировочной плёнкой',
   },
   {
@@ -98,7 +100,7 @@ export const portfolio: PortfolioItem[] = [
     category: 'two-level',
     title: 'Контрастный второй уровень',
     description: 'Светлое полотно с тёмным периметром.',
-    image: '/images/2layer/2layer1.jpg',
+    image: assetUrl('/images/2layer/2layer1.jpg'),
     imageAlt: 'Контрастный двухуровневый натяжной потолок',
   },
   {
@@ -106,7 +108,7 @@ export const portfolio: PortfolioItem[] = [
     category: 'photo-print',
     title: 'Фотопечать в интерьере',
     description: 'Акцентный потолок с индивидуальным изображением.',
-    image: '/images/photoprint/photoprint2.jpg',
+    image: assetUrl('/images/photoprint/photoprint2.jpg'),
     imageAlt: 'Фотопечать с морской раковиной на натяжном потолке',
   },
   {
@@ -114,7 +116,7 @@ export const portfolio: PortfolioItem[] = [
     category: 'track',
     title: 'Линия направленного света',
     description: 'Трековые светильники для функциональной зоны.',
-    image: '/images/tracklight/tracklight2.jpg',
+    image: assetUrl('/images/tracklight/tracklight2.jpg'),
     imageAlt: 'Линейная трековая система с направленными светильниками',
   },
   {
@@ -122,7 +124,7 @@ export const portfolio: PortfolioItem[] = [
     category: 'tinting',
     title: 'Тонировка остекления',
     description: 'Равномерное затемнение большой площади окна.',
-    image: '/images/tonirovka/tonirovka2.jpg',
+    image: assetUrl('/images/tonirovka/tonirovka2.jpg'),
     imageAlt: 'Тонированное остекление в жилом помещении',
   },
   {
@@ -130,7 +132,7 @@ export const portfolio: PortfolioItem[] = [
     category: 'two-level',
     title: 'Мягкая геометрия',
     description: 'Двухуровневая конструкция с точечным светом.',
-    image: '/images/2layer/2layer3.jpg',
+    image: assetUrl('/images/2layer/2layer3.jpg'),
     imageAlt: 'Двухуровневый потолок сложной геометрической формы',
   },
   {
@@ -138,7 +140,7 @@ export const portfolio: PortfolioItem[] = [
     category: 'photo-print',
     title: 'Декоративная фотопечать',
     description: 'Сложный рисунок по всей поверхности полотна.',
-    image: '/images/photoprint/photoprint3.jpg',
+    image: assetUrl('/images/photoprint/photoprint3.jpg'),
     imageAlt: 'Декоративная фотопечать на натяжном потолке',
   },
   {
@@ -146,7 +148,7 @@ export const portfolio: PortfolioItem[] = [
     category: 'track',
     title: 'Треки в светлом интерьере',
     description: 'Чёрные линии света как графичный элемент.',
-    image: '/images/tracklight/tracklight4.jpg',
+    image: assetUrl('/images/tracklight/tracklight4.jpg'),
     imageAlt: 'Чёрная трековая система в светлом помещении',
   },
   {
@@ -154,7 +156,7 @@ export const portfolio: PortfolioItem[] = [
     category: 'tinting',
     title: 'Плёнка для окон дома',
     description: 'Более комфортный свет и приватность внутри.',
-    image: '/images/tonirovka/tonirovka4.jpg',
+    image: assetUrl('/images/tonirovka/tonirovka4.jpg'),
     imageAlt: 'Тонированное окно частного дома, вид из помещения',
   },
   {
@@ -162,7 +164,7 @@ export const portfolio: PortfolioItem[] = [
     category: 'photo-print',
     title: 'Потолок с рисунком',
     description: 'Индивидуальное решение для необычного интерьера.',
-    image: '/images/photoprint/photoprint5.jpg',
+    image: assetUrl('/images/photoprint/photoprint5.jpg'),
     imageAlt: 'Натяжной потолок с индивидуальным рисунком',
   },
   {
@@ -170,7 +172,7 @@ export const portfolio: PortfolioItem[] = [
     category: 'tinting',
     title: 'Тонировка веранды',
     description: 'Работа с несколькими оконными секциями.',
-    image: '/images/tonirovka/tonirovka6.jpg',
+    image: assetUrl('/images/tonirovka/tonirovka6.jpg'),
     imageAlt: 'Тонированные окна закрытой веранды',
   },
 ]

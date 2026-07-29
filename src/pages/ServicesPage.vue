@@ -6,6 +6,7 @@ import SectionHeading from '@/components/ui/SectionHeading.vue'
 import { leadIntents } from '@/config/business'
 import { services } from '@/content/site'
 import { useContentStore } from '@/stores/content'
+import { assetUrl } from '@/utils/url'
 
 const ceilingServices = services.filter((service) => service.category === 'ceilings')
 const tintingServices = services.filter((service) => service.category === 'tinting')
@@ -26,7 +27,7 @@ useSeoMeta({
   >
     <template #aside>
       <img
-        src="/images/2layer/2layer2.jpg"
+        :src="assetUrl('/images/2layer/2layer2.jpg')"
         alt="Светлый натяжной потолок со встроенным освещением"
         width="720"
         height="540"

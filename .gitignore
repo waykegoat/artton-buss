@@ -9,3 +9,13 @@ coverage
 .idea
 .vscode/*
 !.vscode/extensions.json
+
+# Local workspace control files
+.openai/
+.codex/
+.agents/
+.claude/
+.cursor/
+AGENTS.md
+CLAUDE.md
+copilot-instructions.md

@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
 import { leadIntents } from '@/config/business'
+import { assetUrl } from '@/utils/url'
 
 const { t } = useI18n()
 const route = useRoute()
@@ -27,7 +28,7 @@ watch(() => route.path, closeMenu)
   <header class="site-header" @keydown.esc="closeMenu">
     <div class="container site-header__inner">
       <RouterLink class="brand" to="/" aria-label="Art Ton — на главную" @click="closeMenu">
-        <img src="/logo-hq.png" alt="" width="52" height="52" />
+        <img :src="assetUrl('/logo-hq.png')" alt="" width="52" height="52" />
         <span>Art Ton</span>
       </RouterLink>
 

@@ -6,6 +6,7 @@ import SectionHeading from '@/components/ui/SectionHeading.vue'
 import { business, leadIntents } from '@/config/business'
 import { faq, portfolio, processSteps, services } from '@/content/site'
 import { useContentStore } from '@/stores/content'
+import { assetUrl } from '@/utils/url'
 
 const featuredServices = services.filter((service) =>
   ['track-light', 'photo-print', 'window-tinting'].includes(service.id),
@@ -45,7 +46,7 @@ useSeoMeta({
 
       <figure class="hero-visual">
         <img
-          src="/images/tracklight/tracklight1.jpg"
+          :src="assetUrl('/images/tracklight/tracklight1.jpg')"
           alt="Натяжной потолок Art Ton со встроенной трековой системой"
           width="960"
           height="720"
