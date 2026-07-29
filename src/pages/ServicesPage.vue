@@ -19,6 +19,7 @@ const priceLabels: Record<string, string> = {
   fabric: 'Тканевые',
   'single-level': 'Одноуровневые',
   'two-level': 'Двухуровневые',
+  floating: 'Парящие',
   'photo-print': 'С фотопечатью',
 }
 const visiblePrices = computed(() =>

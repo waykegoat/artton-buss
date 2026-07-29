@@ -27,6 +27,7 @@ const serviceLabels: Record<string, string> = {
   fabric: 'Тканевые потолки',
   'single-level': 'Одноуровневые потолки',
   'two-level': 'Двухуровневые потолки',
+  floating: 'Парящие потолки',
   'photo-print': 'Потолки с фотопечатью',
 }
 

@@ -77,6 +77,16 @@ h1 {
   letter-spacing: -0.055em;
 }
 
+.hero__content {
+  min-width: 0;
+}
+
+.hero h1 {
+  max-width: 11ch;
+  font-size: clamp(3rem, 5.1vw, 5.25rem);
+  overflow-wrap: anywhere;
+}
+
 .container {
   width: min(calc(100% - 2rem), var(--container));
   margin-inline: auto;

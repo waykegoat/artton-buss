@@ -152,19 +152,11 @@ export const portfolio: PortfolioItem[] = [
     imageAlt: 'Чёрная трековая система в светлом помещении',
   },
   {
-    id: 'tinting-3',
-    category: 'tinting',
-    title: 'Плёнка для окон дома',
-    description: 'Более комфортный свет и приватность внутри.',
-    image: assetUrl('/images/tonirovka/tonirovka4.jpg'),
-    imageAlt: 'Тонированное окно частного дома, вид из помещения',
-  },
-  {
     id: 'photo-3',
     category: 'photo-print',
     title: 'Потолок с рисунком',
     description: 'Индивидуальное решение для необычного интерьера.',
-    image: assetUrl('/images/photoprint/photoprint5.jpg'),
+    image: assetUrl('/images/2layer/2layer5.jpg'),
     imageAlt: 'Натяжной потолок с индивидуальным рисунком',
   },
   {
@@ -198,6 +190,14 @@ export const portfolio: PortfolioItem[] = [
     description: 'Ровный свет и чистая геометрия интерьера.',
     image: assetUrl('/images/dot-lamps/dot-lamps1.jpg'),
     imageAlt: 'Точечные светильники в натяжном потолке',
+  },
+  {
+    id: 'air-1',
+    category: 'two-level',
+    title: 'Парящий эффект',
+    description: 'Световая линия по краю конструкции добавляет интерьеру лёгкость.',
+    image: assetUrl('/images/aireffect/aireffect.jpg'),
+    imageAlt: 'Парящий натяжной потолок с подсветкой',
   },
   {
     id: 'photo-4',
