@@ -9,7 +9,7 @@ import { useContentStore } from '@/stores/content'
 import { assetUrl } from '@/utils/url'
 
 const featuredServices = services.filter((service) =>
-  ['track-light', 'photo-print', 'window-tinting'].includes(service.id),
+  ['track-light', 'light-lines', 'window-tinting'].includes(service.id),
 )
 const featuredProjects = portfolio.slice(0, 4)
 const contentStore = useContentStore()
@@ -26,10 +26,9 @@ useSeoMeta({
     <div class="container hero__grid">
       <div class="hero__content">
         <p class="eyebrow">{{ business.coverageLabel }}</p>
-        <h1>Монтаж натяжных потолков и солнцезащитных плёнок с долгосрочной гарантией качества.</h1>
+        <h1>Натяжные потолки и солнцезащитные плёнки.</h1>
         <p class="hero__lead">
-          Устанавливаем натяжные потолки, проектируем освещение и тонируем окна. Решение начинается
-          с вашей задачи, а не с готового шаблона.
+          Монтаж натяжных потолков и солнцезащитных плёнок с долгосрочной гарантией качества.
         </p>
         <div class="hero__actions">
           <RouterLink class="button" to="/contacts?intent=ceiling-measure#request">

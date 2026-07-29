@@ -1,7 +1,7 @@
 import { assetUrl } from '@/utils/url'
 
 export type ServiceCategory = 'ceilings' | 'tinting'
-export type PortfolioCategory = 'track' | 'two-level' | 'photo-print' | 'tinting'
+export type PortfolioCategory = 'track' | 'light-lines' | 'two-level' | 'photo-print' | 'tinting'
 
 export interface Service {
   id: string
@@ -46,6 +46,19 @@ export const services: Service[] = [
     features: ['Встроенные треки', 'Поворотные светильники', 'Сценарии общего и акцентного света'],
   },
   {
+    id: 'light-lines',
+    category: 'ceilings',
+    title: 'Световые линии',
+    description: 'Встроенное линейное освещение для ровного, выразительного света.',
+    image: assetUrl('/images/lightlines/lightlines1.jpg'),
+    imageAlt: 'Натяжной потолок со световыми линиями',
+    features: [
+      'Прямые и угловые композиции',
+      'Равномерное освещение',
+      'Сценарии под планировку комнаты',
+    ],
+  },
+  {
     id: 'two-level',
     category: 'ceilings',
     title: 'Двухуровневые конструкции',
@@ -79,6 +92,14 @@ export const services: Service[] = [
 ]
 
 export const portfolio: PortfolioItem[] = [
+  {
+    id: 'light-lines-1',
+    category: 'light-lines',
+    title: 'Световые линии в интерьере',
+    description: 'Линейный свет как основной и акцентный сценарий освещения.',
+    image: assetUrl('/images/lightlines/lightlines1.jpg'),
+    imageAlt: 'Световые линии в натяжном потолке',
+  },
   {
     id: 'track-1',
     category: 'track',

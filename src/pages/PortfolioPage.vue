@@ -14,6 +14,7 @@ const activeFilter = ref<Filter>('all')
 const filters: { value: Filter; label: string }[] = [
   { value: 'all', label: 'Все работы' },
   { value: 'track', label: 'Трековый свет' },
+  { value: 'light-lines', label: 'Световые линии' },
   { value: 'two-level', label: 'Два уровня' },
   { value: 'photo-print', label: 'Фотопечать' },
   { value: 'tinting', label: 'Тонировка' },
