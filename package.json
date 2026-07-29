@@ -12,6 +12,9 @@
     "build:web": "vite-ssg build",
     "build:pages": "vite-ssg build && node scripts/prepare-pages.mjs",
     "build:worker": "node scripts/build-worker.mjs",
+    "cf:login": "wrangler login",
+    "cf:deploy": "npm run build && wrangler deploy",
+    "cf:migrate": "wrangler d1 migrations apply DB --remote",
     "preview": "vite preview",
     "password:hash": "node scripts/hash-password.mjs",
     "typecheck": "vue-tsc -b --pretty false",
@@ -50,6 +53,7 @@
     "vite": "8.1.5",
     "vite-ssg": "28.3.0",
     "vitest": "4.1.10",
-    "vue-tsc": "3.3.8"
+    "vue-tsc": "3.3.8",
+    "wrangler": "^4.115.0"
   }
 }

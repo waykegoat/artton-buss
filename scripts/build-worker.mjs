@@ -4,7 +4,7 @@ import { resolve } from 'node:path'
 import { build } from 'esbuild'
 
 const projectRoot = resolve(import.meta.dirname, '..')
-const outputDirectory = resolve(projectRoot, 'dist', 'server')
+const outputDirectory = resolve(projectRoot, '.worker')
 
 await mkdir(outputDirectory, { recursive: true })
 await build({
