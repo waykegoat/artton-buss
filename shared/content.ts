@@ -22,11 +22,14 @@ export const defaultPublicContent: PublicContent = {
     serviceRegion: 'Заречный, Пенза и Пензенская область',
   },
   prices: {
-    classic: { value: null, unit: '₽/м²', visible: false },
-    'track-light': { value: null, unit: '₽', visible: false },
-    'two-level': { value: null, unit: '₽/м²', visible: false },
-    'photo-print': { value: null, unit: '₽/м²', visible: false },
-    'window-tinting': { value: null, unit: '₽/м²', visible: false },
+    satin: { value: 300, unit: '₽/м²', visible: true },
+    matte: { value: 300, unit: '₽/м²', visible: true },
+    glossy: { value: 350, unit: '₽/м²', visible: true },
+    fabric: { value: 2100, unit: '₽/м²', visible: true },
+    'single-level': { value: 300, unit: '₽/м²', visible: true },
+    'two-level': { value: 2000, unit: '₽/м.п.', visible: true },
+    floating: { value: 750, unit: '₽/м.п.', visible: true },
+    'photo-print': { value: 1200, unit: '₽/м²', visible: true },
   },
 }
 

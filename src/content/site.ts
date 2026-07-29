@@ -175,6 +175,46 @@ export const portfolio: PortfolioItem[] = [
     image: assetUrl('/images/tonirovka/tonirovka6.jpg'),
     imageAlt: 'Тонированные окна закрытой веранды',
   },
+  {
+    id: 'cornice-1',
+    category: 'two-level',
+    title: 'Скрытый карниз',
+    description: 'Аккуратная линия шторы без видимых креплений.',
+    image: assetUrl('/images/hided-cornise/hided-cornise1.jpg'),
+    imageAlt: 'Натяжной потолок со скрытым карнизом',
+  },
+  {
+    id: 'contour-1',
+    category: 'two-level',
+    title: 'Контурный профиль',
+    description: 'Световой акцент по периметру потолка.',
+    image: assetUrl('/images/conture-profile/conture-profile1.jpg'),
+    imageAlt: 'Контурный профиль в натяжном потолке',
+  },
+  {
+    id: 'lights-1',
+    category: 'track',
+    title: 'Точечные светильники',
+    description: 'Ровный свет и чистая геометрия интерьера.',
+    image: assetUrl('/images/dot-lamps/dot-lamps1.jpg'),
+    imageAlt: 'Точечные светильники в натяжном потолке',
+  },
+  {
+    id: 'air-1',
+    category: 'two-level',
+    title: 'Парящий эффект',
+    description: 'Лёгкая световая линия по краю конструкции.',
+    image: assetUrl('/images/aireffect/aireffect.jpg'),
+    imageAlt: 'Парящий натяжной потолок с подсветкой',
+  },
+  {
+    id: 'photo-4',
+    category: 'photo-print',
+    title: 'Фотопечать с подсветкой',
+    description: 'Декоративное решение для выразительного интерьера.',
+    image: assetUrl('/images/photoprint/photoprint4.jpg'),
+    imageAlt: 'Потолок с фотопечатью и подсветкой',
+  },
 ]
 
 export const processSteps = [

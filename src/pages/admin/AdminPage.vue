@@ -21,11 +21,14 @@ interface Lead {
 }
 
 const serviceLabels: Record<string, string> = {
-  classic: 'Классические потолки',
-  'track-light': 'Трековое освещение',
-  'two-level': 'Двухуровневые конструкции',
-  'photo-print': 'Фотопечать',
-  'window-tinting': 'Тонировка окон',
+  satin: 'Сатиновые потолки',
+  matte: 'Матовые потолки',
+  glossy: 'Глянцевые потолки',
+  fabric: 'Тканевые потолки',
+  'single-level': 'Одноуровневые потолки',
+  'two-level': 'Двухуровневые потолки',
+  floating: 'Парящие потолки',
+  'photo-print': 'Потолки с фотопечатью',
 }
 
 const statusLabels: Record<LeadStatus, string> = {

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useSeoMeta } from '@unhead/vue'
+import { computed } from 'vue'
 
 import PageIntro from '@/components/ui/PageIntro.vue'
 import SectionHeading from '@/components/ui/SectionHeading.vue'
@@ -11,6 +12,21 @@ import { assetUrl } from '@/utils/url'
 const ceilingServices = services.filter((service) => service.category === 'ceilings')
 const tintingServices = services.filter((service) => service.category === 'tinting')
 const contentStore = useContentStore()
+const priceLabels: Record<string, string> = {
+  satin: 'Сатиновые',
+  matte: 'Матовые',
+  glossy: 'Глянцевые',
+  fabric: 'Тканевые',
+  'single-level': 'Одноуровневые',
+  'two-level': 'Двухуровневые',
+  floating: 'Парящие',
+  'photo-print': 'С фотопечатью',
+}
+const visiblePrices = computed(() =>
+  Object.entries(contentStore.content.prices)
+    .filter(([, price]) => price.visible && price.value !== null)
+    .map(([key, price]) => ({ label: priceLabels[key] ?? key, ...price })),
+)
 
 useSeoMeta({
   title: 'Натяжные потолки и тонировка окон',
@@ -61,14 +77,13 @@ useSeoMeta({
             <ul>
               <li v-for="feature in service.features" :key="feature">{{ feature }}</li>
             </ul>
-            <p
-              v-if="contentStore.content.prices[service.id]?.visible"
-              class="service-detail-list__price"
-            >
-              от {{ contentStore.content.prices[service.id]?.value?.toLocaleString('ru-RU') }}
-              {{ contentStore.content.prices[service.id]?.unit }}
-            </p>
           </div>
+        </article>
+      </div>
+      <div v-if="visiblePrices.length" class="price-list" aria-label="Ориентировочные цены">
+        <article v-for="price in visiblePrices" :key="price.label">
+          <span>{{ price.label }}</span>
+          <strong>от {{ price.value?.toLocaleString('ru-RU') }} {{ price.unit }}</strong>
         </article>
       </div>
       <RouterLink class="button" to="/contacts?intent=ceiling-measure#request">
@@ -102,14 +117,6 @@ useSeoMeta({
           <ul>
             <li v-for="feature in tintingServices[0]?.features" :key="feature">{{ feature }}</li>
           </ul>
-          <p
-            v-if="contentStore.content.prices['window-tinting']?.visible"
-            class="tinting-feature__price"
-          >
-            от
-            {{ contentStore.content.prices['window-tinting']?.value?.toLocaleString('ru-RU') }}
-            {{ contentStore.content.prices['window-tinting']?.unit }}
-          </p>
           <p>
             Точный вариант плёнки нельзя выбирать только по фотографии — сначала обсуждаем объект и
             ожидаемый результат.
