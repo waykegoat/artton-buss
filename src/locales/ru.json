@@ -1,0 +1,11 @@
+{
+  "navigation": {
+    "home": "Главная",
+    "services": "Услуги",
+    "portfolio": "Портфолио",
+    "contacts": "Контакты"
+  },
+  "actions": {
+    "requestMeasure": "Заказать замер"
+  }
+}
