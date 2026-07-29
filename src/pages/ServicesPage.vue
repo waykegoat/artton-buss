@@ -19,7 +19,6 @@ const priceLabels: Record<string, string> = {
   fabric: 'Тканевые',
   'single-level': 'Одноуровневые',
   'two-level': 'Двухуровневые',
-  floating: 'Парящие',
   'photo-print': 'С фотопечатью',
 }
 const visiblePrices = computed(() =>
@@ -96,7 +95,7 @@ useSeoMeta({
     <div class="container">
       <SectionHeading
         eyebrow="02 / Тонировка окон"
-        title="Приватность без тяжёлых штор"
+        title="Тонировка под задачу и тип остекления"
         description="Подходит для окон дома, квартиры, офиса, балкона или веранды. На консультации уточним желаемый эффект и особенности остекления."
       />
       <div class="tinting-feature__grid">
@@ -111,8 +110,7 @@ useSeoMeta({
         </div>
         <div class="tinting-feature__content">
           <p class="tinting-feature__lead">
-            Зеркальная и солнцезащитная плёнка меняет восприятие окна и помогает сделать
-            пространство комфортнее.
+            Подбираем плёнку по задаче: снизить нагрев, добавить приватности или усилить стекло.
           </p>
           <ul>
             <li v-for="feature in tintingServices[0]?.features" :key="feature">{{ feature }}</li>

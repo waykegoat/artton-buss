@@ -28,7 +28,6 @@ export const defaultPublicContent: PublicContent = {
     fabric: { value: 2100, unit: '₽/м²', visible: true },
     'single-level': { value: 300, unit: '₽/м²', visible: true },
     'two-level': { value: 2000, unit: '₽/м.п.', visible: true },
-    floating: { value: 750, unit: '₽/м.п.', visible: true },
     'photo-print': { value: 1200, unit: '₽/м²', visible: true },
   },
 }

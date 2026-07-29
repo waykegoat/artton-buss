@@ -17,6 +17,8 @@ const contentStore = useContentStore()
         <RouterLink to="/services">Услуги</RouterLink>
         <RouterLink to="/portfolio">Портфолио</RouterLink>
         <RouterLink to="/contacts">Контакты</RouterLink>
+        <a :href="business.social.vk" target="_blank" rel="noopener noreferrer">VK</a>
+        <a :href="business.social.max" target="_blank" rel="noopener noreferrer">MAX</a>
       </nav>
       <div>
         <a class="site-footer__phone" :href="business.phone.href">

@@ -28,8 +28,8 @@ export const services: Service[] = [
     category: 'ceilings',
     title: 'Классические потолки',
     description: 'Лаконичная ровная поверхность для жилых и коммерческих помещений.',
-    image: assetUrl('/images/2layer/2layer2.jpg'),
-    imageAlt: 'Светлый натяжной потолок с точечным освещением',
+    image: assetUrl('/images/tracklight/tracklight3.jpg'),
+    imageAlt: 'Одноуровневый натяжной потолок с освещением',
     features: [
       'Матовые и сатиновые фактуры',
       'Точечное и основное освещение',
@@ -72,9 +72,9 @@ export const services: Service[] = [
     category: 'tinting',
     title: 'Тонировка окон',
     description: 'Плёнка для окон дома, квартиры, офиса, балкона или веранды.',
-    image: assetUrl('/images/tonirovka/tonirovka1.jpg'),
-    imageAlt: 'Тонированное панорамное окно частного дома',
-    features: ['Зеркальные решения', 'Больше приватности', 'Снижение яркости солнечного света'],
+    image: assetUrl('/images/tonirovka/tonirovka.jpg'),
+    imageAlt: 'Архитектурная тонировка окон частного дома',
+    features: ['Архитектурная тонировка', 'Атермальная тонировка', 'Бронирование стекла'],
   },
 ]
 
@@ -90,10 +90,10 @@ export const portfolio: PortfolioItem[] = [
   {
     id: 'tinting-1',
     category: 'tinting',
-    title: 'Зеркальная плёнка 15%',
-    description: 'Тонировка панорамного окна частного дома.',
-    image: assetUrl('/images/tonirovka/tonirovka1.jpg'),
-    imageAlt: 'Панорамное окно с зеркальной тонировочной плёнкой',
+    title: 'Архитектурная тонировка дома',
+    description: 'Солнцезащитная плёнка для окон частного дома.',
+    image: assetUrl('/images/tonirovka/tonirovka.jpg'),
+    imageAlt: 'Дом с архитектурной тонировкой окон',
   },
   {
     id: 'two-level-1',
@@ -170,10 +170,10 @@ export const portfolio: PortfolioItem[] = [
   {
     id: 'tinting-4',
     category: 'tinting',
-    title: 'Тонировка веранды',
-    description: 'Работа с несколькими оконными секциями.',
-    image: assetUrl('/images/tonirovka/tonirovka6.jpg'),
-    imageAlt: 'Тонированные окна закрытой веранды',
+    title: 'Тонировка балкона',
+    description: 'Защита от солнца и дополнительная приватность.',
+    image: assetUrl('/images/tonirovka/balcon.jpg'),
+    imageAlt: 'Балкон с тонированным остеклением',
   },
   {
     id: 'cornice-1',
@@ -198,14 +198,6 @@ export const portfolio: PortfolioItem[] = [
     description: 'Ровный свет и чистая геометрия интерьера.',
     image: assetUrl('/images/dot-lamps/dot-lamps1.jpg'),
     imageAlt: 'Точечные светильники в натяжном потолке',
-  },
-  {
-    id: 'air-1',
-    category: 'two-level',
-    title: 'Парящий эффект',
-    description: 'Лёгкая световая линия по краю конструкции.',
-    image: assetUrl('/images/aireffect/aireffect.jpg'),
-    imageAlt: 'Парящий натяжной потолок с подсветкой',
   },
   {
     id: 'photo-4',

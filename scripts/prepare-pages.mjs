@@ -15,9 +15,9 @@ const socialImageUrl = `${siteUrl}/og.png`
 const pageSeo = {
   'index.html': {
     path: '/',
-    title: 'Натяжные потолки и тонировка в Заречном и Пензе — Art Ton',
+    title: 'Монтаж натяжных потолков и солнцезащитных плёнок — Art Ton',
     description:
-      'Натяжные потолки и тонировка окон в Заречном, Пензе и Пензенской области. Бесплатный замер потолка и консультация по тонировке.',
+      'Монтаж натяжных потолков и солнцезащитных плёнок в Заречном, Пензе и Пензенской области. Бесплатный замер и консультация.',
   },
   'services/index.html': {
     path: '/services/',
@@ -45,7 +45,7 @@ const structuredData = JSON.stringify({
   name: 'Art Ton',
   url: siteUrl,
   telephone: '+79875051859',
-  sameAs: ['https://vk.ru/art_ton_58'],
+  sameAs: ['https://vk.ru/art_ton_58', 'https://max.ru/channel_art_ton_58'],
   areaServed: ['Заречный', 'Пенза', 'Пензенская область'],
   openingHours: 'Mo-Sa 09:00-20:00',
   serviceType: ['Натяжные потолки', 'Тонировка окон'],

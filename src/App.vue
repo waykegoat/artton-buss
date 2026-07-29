@@ -27,7 +27,7 @@ useHead(() => {
     name: business.name,
     url: siteUrl || undefined,
     telephone: '+79875051859',
-    sameAs: ['https://vk.ru/art_ton_58'],
+    sameAs: [business.social.vk, business.social.max],
     areaServed: business.serviceAreas,
     openingHours: 'Mo-Sa 09:00-20:00',
     serviceType: ['Натяжные потолки', 'Тонировка окон'],

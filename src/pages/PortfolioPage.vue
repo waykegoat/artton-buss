@@ -46,7 +46,7 @@ useSeoMeta({
           width="480"
           height="360"
         />
-        <img :src="assetUrl('/images/tonirovka/tonirovka4.jpg')" alt="" width="360" height="480" />
+        <img :src="assetUrl('/images/tonirovka/balcon.jpg')" alt="" width="360" height="480" />
       </div>
     </template>
   </PageIntro>
