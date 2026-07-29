@@ -222,54 +222,6 @@ async function handleLeadStatus(request: Request, env: Env, leadId: string): Pro
   return json({ id: leadId, status })
 }
 
-async function handleMediaUpload(request: Request, env: Env): Promise<Response> {
-  const session = await requireAdmin(request, env)
-  if (!session) return json({ error: 'Unauthorized' }, 401)
-  if (request.method !== 'POST') return methodNotAllowed()
-  if (!requireSameOrigin(request)) return json({ error: 'Invalid origin' }, 403)
-
-  const contentType = request.headers.get('content-type')?.split(';')[0] ?? ''
-  const extensions: Record<string, string> = {
-    'image/avif': 'avif',
-    'image/jpeg': 'jpg',
-    'image/png': 'png',
-    'image/webp': 'webp',
-  }
-  const extension = extensions[contentType]
-  const contentLength = Number(request.headers.get('content-length') ?? 0)
-  if (!extension || !request.body || contentLength <= 0 || contentLength > 8 * 1024 * 1024) {
-    return json({ error: 'Unsupported image or file is too large' }, 422)
-  }
-
-  const key = `portfolio/${crypto.randomUUID()}.${extension}`
-  const originalName = cleanText(request.headers.get('x-file-name'), 180)
-  await env.MEDIA.put(key, request.body, {
-    httpMetadata: {
-      contentType,
-      cacheControl: 'public, max-age=31536000, immutable',
-    },
-    customMetadata: { originalName },
-  })
-  await audit(env, session.sub, 'upload', 'media', key, { contentType, originalName })
-
-  return json({ key, url: `/media/${key}` }, 201)
-}
-
-async function handleMedia(request: Request, env: Env, key: string): Promise<Response> {
-  if (request.method !== 'GET' && request.method !== 'HEAD') return methodNotAllowed()
-  if (!key.startsWith('portfolio/') || key.includes('..')) return json({ error: 'Not found' }, 404)
-
-  const object = await env.MEDIA.get(key)
-  if (!object) return json({ error: 'Not found' }, 404)
-
-  const headers = new Headers()
-  object.writeHttpMetadata(headers)
-  headers.set('etag', object.httpEtag)
-  headers.set('x-content-type-options', 'nosniff')
-
-  return new Response(request.method === 'HEAD' ? null : object.body, { headers })
-}
-
 function xmlEscape(value: string): string {
   return value
     .replaceAll('&', '&amp;')
@@ -333,7 +285,6 @@ async function handleApi(request: Request, env: Env): Promise<Response> {
   if (path === '/api/leads') return handleCreateLead(request, env)
   if (path === '/api/admin/content') return handleAdminContent(request, env)
   if (path === '/api/admin/leads') return handleLeads(request, env)
-  if (path === '/api/admin/media') return handleMediaUpload(request, env)
   if (path.startsWith('/api/admin/leads/')) {
     return handleLeadStatus(request, env, path.slice('/api/admin/leads/'.length))
   }
@@ -407,9 +358,6 @@ export default {
       if (path.startsWith('/api/')) return await handleApi(request, env)
       if (path === '/sitemap.xml') return handleSitemap(request)
       if (path === '/robots.txt') return handleRobots(request)
-      if (path.startsWith('/media/')) {
-        return await handleMedia(request, env, decodeURIComponent(path.slice('/media/'.length)))
-      }
       return await handleAssets(request, env)
     } catch (error) {
       console.error(error)
