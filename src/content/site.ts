@@ -28,8 +28,8 @@ export const services: Service[] = [
     category: 'ceilings',
     title: 'Классические потолки',
     description: 'Лаконичная ровная поверхность для жилых и коммерческих помещений.',
-    image: assetUrl('/images/tracklight/tracklight3.jpg'),
-    imageAlt: 'Одноуровневый натяжной потолок с освещением',
+    image: assetUrl('/images/classic/classic1.png'),
+    imageAlt: 'Классический белый натяжной потолок с точечным освещением',
     features: [
       'Матовые и сатиновые фактуры',
       'Точечное и основное освещение',
