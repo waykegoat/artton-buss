@@ -25,7 +25,7 @@ function closeMenu(): void {
   <header class="site-header">
     <div class="container site-header__inner">
       <RouterLink class="brand" to="/" aria-label="Art Ton — на главную" @click="closeMenu">
-        <img src="/logo.png" alt="" width="52" height="52" />
+        <img src="/logo-hq.png" alt="" width="52" height="52" />
         <span>Art Ton</span>
       </RouterLink>
 

@@ -1,0 +1,16 @@
+{
+  "name": "Art Ton — натяжные потолки и тонировка окон",
+  "short_name": "Art Ton",
+  "lang": "ru",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f3f5fb",
+  "theme_color": "#12162c",
+  "icons": [
+    {
+      "src": "/logo-hq.png",
+      "sizes": "1254x1254",
+      "type": "image/png"
+    }
+  ]
+}

@@ -5,9 +5,11 @@ import PageIntro from '@/components/ui/PageIntro.vue'
 import SectionHeading from '@/components/ui/SectionHeading.vue'
 import { leadIntents } from '@/config/business'
 import { services } from '@/content/site'
+import { useContentStore } from '@/stores/content'
 
 const ceilingServices = services.filter((service) => service.category === 'ceilings')
 const tintingServices = services.filter((service) => service.category === 'tinting')
+const contentStore = useContentStore()
 
 useSeoMeta({
   title: 'Натяжные потолки и тонировка окон',
@@ -58,6 +60,13 @@ useSeoMeta({
             <ul>
               <li v-for="feature in service.features" :key="feature">{{ feature }}</li>
             </ul>
+            <p
+              v-if="contentStore.content.prices[service.id]?.visible"
+              class="service-detail-list__price"
+            >
+              от {{ contentStore.content.prices[service.id]?.value?.toLocaleString('ru-RU') }}
+              {{ contentStore.content.prices[service.id]?.unit }}
+            </p>
           </div>
         </article>
       </div>
@@ -92,6 +101,14 @@ useSeoMeta({
           <ul>
             <li v-for="feature in tintingServices[0]?.features" :key="feature">{{ feature }}</li>
           </ul>
+          <p
+            v-if="contentStore.content.prices['window-tinting']?.visible"
+            class="tinting-feature__price"
+          >
+            от
+            {{ contentStore.content.prices['window-tinting']?.value?.toLocaleString('ru-RU') }}
+            {{ contentStore.content.prices['window-tinting']?.unit }}
+          </p>
           <p>
             Точный вариант плёнки нельзя выбирать только по фотографии — сначала обсуждаем объект и
             ожидаемый результат.

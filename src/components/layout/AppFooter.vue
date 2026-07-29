@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { business } from '@/config/business'
+import { useContentStore } from '@/stores/content'
+
+const contentStore = useContentStore()
 </script>
 
 <template>
@@ -8,6 +11,7 @@ import { business } from '@/config/business'
       <div>
         <strong>{{ business.name }}</strong>
         <p>Натяжные потолки и тонировка в Заречном, Пензе и Пензенской области.</p>
+        <p>{{ contentStore.content.facts.hours }}</p>
       </div>
       <nav aria-label="Ссылки в подвале">
         <RouterLink to="/services">Услуги</RouterLink>

@@ -18,6 +18,7 @@ const form = reactive({
   phone: '',
   comment: '',
   consent: false,
+  company: '',
 })
 
 const status = ref<'idle' | 'submitting' | 'success' | 'error'>('idle')
@@ -47,6 +48,7 @@ async function submit(): Promise<void> {
     form.phone = ''
     form.comment = ''
     form.consent = false
+    form.company = ''
   } catch {
     status.value = 'error'
   }
@@ -55,6 +57,10 @@ async function submit(): Promise<void> {
 
 <template>
   <form class="lead-form" @submit.prevent="submit">
+    <label class="lead-form__honeypot" aria-hidden="true">
+      Компания
+      <input v-model="form.company" name="company" tabindex="-1" autocomplete="off" />
+    </label>
     <fieldset class="lead-form__intent">
       <legend>Что вас интересует?</legend>
       <label>

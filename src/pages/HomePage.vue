@@ -5,11 +5,13 @@ import PortfolioCard from '@/components/portfolio/PortfolioCard.vue'
 import SectionHeading from '@/components/ui/SectionHeading.vue'
 import { business, leadIntents } from '@/config/business'
 import { faq, portfolio, processSteps, services } from '@/content/site'
+import { useContentStore } from '@/stores/content'
 
 const featuredServices = services.filter((service) =>
   ['track-light', 'photo-print', 'window-tinting'].includes(service.id),
 )
 const featuredProjects = portfolio.slice(0, 4)
+const contentStore = useContentStore()
 
 useSeoMeta({
   title: 'Натяжные потолки и тонировка в Заречном и Пензе',
@@ -35,9 +37,9 @@ useSeoMeta({
           <RouterLink class="text-link" to="/portfolio">Смотреть реальные работы</RouterLink>
         </div>
         <ul class="hero__facts" aria-label="Основные преимущества">
-          <li>Бесплатный замер потолка</li>
-          <li>Консультация по тонировке</li>
-          <li>Работа по области</li>
+          <li>{{ contentStore.content.facts.experienceYears }} лет опыта</li>
+          <li>Гарантия до {{ contentStore.content.facts.warrantyYears }} лет</li>
+          <li>{{ contentStore.content.facts.hours }}</li>
         </ul>
       </div>
 
