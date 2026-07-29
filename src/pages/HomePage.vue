@@ -26,9 +26,10 @@ useSeoMeta({
     <div class="container hero__grid">
       <div class="hero__content">
         <p class="eyebrow">{{ business.coverageLabel }}</p>
-        <h1>Натяжные потолки и солнцезащитные плёнки.</h1>
+        <h1>Монтаж натяжных потолков и солнцезащитных плёнок с долгосрочной гарантией качества.</h1>
         <p class="hero__lead">
-          Монтаж натяжных потолков и солнцезащитных плёнок с долгосрочной гарантией качества.
+          Устанавливаем натяжные потолки, проектируем освещение и тонируем окна. Решение начинается
+          с вашей задачи, а не с готового шаблона.
         </p>
         <div class="hero__actions">
           <RouterLink class="button" to="/contacts?intent=ceiling-measure#request">
