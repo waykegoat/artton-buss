@@ -9,11 +9,11 @@ describe('public content validation', () => {
 
   it('rejects a visible price outside the supported range', () => {
     const content = globalThis.structuredClone(defaultPublicContent)
-    const classicPrice = content.prices.classic
-    if (!classicPrice) throw new Error('Missing classic price fixture')
+    const satinPrice = content.prices.satin
+    if (!satinPrice) throw new Error('Missing satin price fixture')
 
-    classicPrice.value = 100_000_000
-    classicPrice.visible = true
+    satinPrice.value = 100_000_000
+    satinPrice.visible = true
 
     expect(normalizePublicContent(content)).toBeNull()
   })
