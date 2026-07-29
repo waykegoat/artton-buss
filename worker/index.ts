@@ -361,7 +361,7 @@ export default {
       return await handleAssets(request, env)
     } catch (error) {
       console.error(error)
-    return json({ error: 'Internal server error' }, 500)
+      return json({ error: 'Internal server error' }, 500)
     }
   },
 } satisfies ExportedHandler<Env>
