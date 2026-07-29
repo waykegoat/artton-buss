@@ -11,7 +11,11 @@ import { assetUrl } from '@/utils/url'
 const featuredServices = services.filter((service) =>
   ['track-light', 'light-lines', 'window-tinting'].includes(service.id),
 )
-const featuredProjects = portfolio.slice(0, 4)
+const featuredProjectIds = ['track-1', 'air-1', 'photo-3', 'tinting-1']
+const featuredProjects = featuredProjectIds.flatMap((id) => {
+  const project = portfolio.find((item) => item.id === id)
+  return project ? [project] : []
+})
 const contentStore = useContentStore()
 
 useSeoMeta({
