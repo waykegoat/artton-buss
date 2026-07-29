@@ -2,39 +2,108 @@
 import { useSeoMeta } from '@unhead/vue'
 
 import PageIntro from '@/components/ui/PageIntro.vue'
+import SectionHeading from '@/components/ui/SectionHeading.vue'
 import { leadIntents } from '@/config/business'
+import { services } from '@/content/site'
+
+const ceilingServices = services.filter((service) => service.category === 'ceilings')
+const tintingServices = services.filter((service) => service.category === 'tinting')
 
 useSeoMeta({
-  title: 'Натяжные потолки и тонировка',
-  description: 'Натяжные потолки и тонировка Art Ton в Заречном, Пензе и Пензенской области.',
+  title: 'Натяжные потолки и тонировка окон',
+  description:
+    'Натяжные потолки, трековое освещение, двухуровневые конструкции, фотопечать и тонировка окон в Заречном, Пензе и Пензенской области.',
 })
 </script>
 
 <template>
   <PageIntro
     eyebrow="Услуги"
-    title="Два направления — один стандарт качества"
-    description="Для потолков начинаем с замера, для тонировки — с консультации и выбора решения."
-  />
+    title="Два направления — один стандарт работы"
+    description="Для потолков начинаем с бесплатного замера. Для тонировки окон — с консультации и подбора плёнки под вашу задачу."
+  >
+    <template #aside>
+      <img
+        src="/images/2layer/2layer2.jpg"
+        alt="Светлый натяжной потолок со встроенным освещением"
+        width="720"
+        height="540"
+      />
+    </template>
+  </PageIntro>
 
-  <section class="service-split service-split--page">
-    <div class="container service-split__grid">
-      <article>
-        <p class="eyebrow">01 / Потолки</p>
-        <h2>Натяжные потолки</h2>
-        <p>Конструкции, профили и сценарии освещения под конкретное помещение.</p>
-        <RouterLink class="button" to="/contacts?intent=ceiling-measure#request">
-          {{ leadIntents['ceiling-measure'].label }}
-        </RouterLink>
-      </article>
-      <article>
-        <p class="eyebrow">02 / Тонировка</p>
-        <h2>Тонировка</h2>
-        <p>Консультация по материалам, особенностям и ожидаемому результату.</p>
-        <RouterLink class="button" to="/contacts?intent=tinting-consultation#request">
-          {{ leadIntents['tinting-consultation'].label }}
-        </RouterLink>
-      </article>
+  <section class="section">
+    <div class="container">
+      <SectionHeading
+        eyebrow="01 / Натяжные потолки"
+        title="Свет, форма и фактура"
+        description="Подбираем конструкцию не отдельно от интерьера, а вместе с освещением и назначением комнаты."
+      />
+      <div class="service-detail-list">
+        <article v-for="(service, index) in ceilingServices" :key="service.id">
+          <div class="service-detail-list__image">
+            <img
+              :src="service.image"
+              :alt="service.imageAlt"
+              width="720"
+              height="540"
+              :loading="index === 0 ? 'eager' : 'lazy'"
+              decoding="async"
+            />
+          </div>
+          <div class="service-detail-list__content">
+            <span>0{{ index + 1 }}</span>
+            <h3>{{ service.title }}</h3>
+            <p>{{ service.description }}</p>
+            <ul>
+              <li v-for="feature in service.features" :key="feature">{{ feature }}</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+      <RouterLink class="button" to="/contacts?intent=ceiling-measure#request">
+        {{ leadIntents['ceiling-measure'].label }}
+      </RouterLink>
+    </div>
+  </section>
+
+  <section class="section section--dark tinting-feature">
+    <div class="container">
+      <SectionHeading
+        eyebrow="02 / Тонировка окон"
+        title="Приватность без тяжёлых штор"
+        description="Подходит для окон дома, квартиры, офиса, балкона или веранды. На консультации уточним желаемый эффект и особенности остекления."
+      />
+      <div class="tinting-feature__grid">
+        <div class="tinting-feature__media">
+          <img
+            :src="tintingServices[0]?.image"
+            :alt="tintingServices[0]?.imageAlt"
+            width="720"
+            height="960"
+            loading="lazy"
+          />
+        </div>
+        <div class="tinting-feature__content">
+          <p class="tinting-feature__lead">
+            Зеркальная и солнцезащитная плёнка меняет восприятие окна и помогает сделать
+            пространство комфортнее.
+          </p>
+          <ul>
+            <li v-for="feature in tintingServices[0]?.features" :key="feature">{{ feature }}</li>
+          </ul>
+          <p>
+            Точный вариант плёнки нельзя выбирать только по фотографии — сначала обсуждаем объект и
+            ожидаемый результат.
+          </p>
+          <RouterLink
+            class="button button--light"
+            to="/contacts?intent=tinting-consultation#request"
+          >
+            {{ leadIntents['tinting-consultation'].label }}
+          </RouterLink>
+        </div>
+      </div>
     </div>
   </section>
 </template>

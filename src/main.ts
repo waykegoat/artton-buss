@@ -1,4 +1,3 @@
-import { createHead } from '@unhead/vue/client'
 import { createPinia } from 'pinia'
 import { ViteSSG } from 'vite-ssg'
 
@@ -21,7 +20,6 @@ export const createApp = ViteSSG(
   },
   ({ app }) => {
     app.use(createPinia())
-    app.use(createHead())
     app.use(i18n)
   },
 )

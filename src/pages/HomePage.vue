@@ -1,50 +1,173 @@
 <script setup lang="ts">
 import { useSeoMeta } from '@unhead/vue'
 
+import PortfolioCard from '@/components/portfolio/PortfolioCard.vue'
+import SectionHeading from '@/components/ui/SectionHeading.vue'
 import { business, leadIntents } from '@/config/business'
+import { faq, portfolio, processSteps, services } from '@/content/site'
+
+const featuredServices = services.filter((service) =>
+  ['track-light', 'photo-print', 'window-tinting'].includes(service.id),
+)
+const featuredProjects = portfolio.slice(0, 4)
 
 useSeoMeta({
   title: 'Натяжные потолки и тонировка в Заречном и Пензе',
   description:
-    'Натяжные потолки и тонировка в Заречном, Пензе и Пензенской области. Бесплатный замер потолка, понятная смета и аккуратная работа.',
+    'Натяжные потолки и тонировка окон в Заречном, Пензе и Пензенской области. Бесплатный замер потолка, консультация по тонировке и реальные работы.',
 })
 </script>
 
 <template>
   <section class="hero">
-    <div class="container hero__inner">
-      <p class="eyebrow">{{ business.coverageLabel }}</p>
-      <h1>Потолок, который завершает интерьер</h1>
-      <p class="hero__lead">
-        Проектируем и устанавливаем натяжные потолки — от лаконичных решений до сложного света.
-      </p>
-      <div class="hero__actions">
-        <RouterLink class="button" to="/contacts?intent=ceiling-measure#request">
-          {{ leadIntents['ceiling-measure'].label }}
-        </RouterLink>
-        <RouterLink class="text-link" to="/portfolio">Посмотреть работы</RouterLink>
+    <div class="container hero__grid">
+      <div class="hero__content">
+        <p class="eyebrow">{{ business.coverageLabel }}</p>
+        <h1>Точный потолок. Комфортный свет.</h1>
+        <p class="hero__lead">
+          Устанавливаем натяжные потолки, проектируем освещение и тонируем окна. Решение начинается
+          с вашей задачи, а не с готового шаблона.
+        </p>
+        <div class="hero__actions">
+          <RouterLink class="button" to="/contacts?intent=ceiling-measure#request">
+            {{ leadIntents['ceiling-measure'].label }}
+          </RouterLink>
+          <RouterLink class="text-link" to="/portfolio">Смотреть реальные работы</RouterLink>
+        </div>
+        <ul class="hero__facts" aria-label="Основные преимущества">
+          <li>Бесплатный замер потолка</li>
+          <li>Консультация по тонировке</li>
+          <li>Работа по области</li>
+        </ul>
+      </div>
+
+      <figure class="hero-visual">
+        <img
+          src="/images/tracklight/tracklight1.jpg"
+          alt="Натяжной потолок Art Ton со встроенной трековой системой"
+          width="960"
+          height="720"
+          fetchpriority="high"
+        />
+        <figcaption>
+          <span>Реализованный проект</span>
+          <strong>Трековое освещение</strong>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="hero-marquee" aria-hidden="true">
+      <span>Натяжные потолки</span>
+      <span>Трековый свет</span>
+      <span>Фотопечать</span>
+      <span>Тонировка окон</span>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Возможности"
+        title="Не просто ровная поверхность"
+        description="Потолок задаёт свет и геометрию интерьера, а тонировка помогает управлять приватностью и яркостью."
+      />
+
+      <div class="service-showcase">
+        <article
+          v-for="(service, index) in featuredServices"
+          :key="service.id"
+          class="service-card"
+        >
+          <div class="service-card__image">
+            <img
+              :src="service.image"
+              :alt="service.imageAlt"
+              width="720"
+              height="520"
+              loading="lazy"
+              decoding="async"
+            />
+            <span>0{{ index + 1 }}</span>
+          </div>
+          <div class="service-card__content">
+            <h3>{{ service.title }}</h3>
+            <p>{{ service.description }}</p>
+            <RouterLink class="text-link" to="/services">Подробнее об услуге</RouterLink>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="service-split">
-    <div class="container service-split__grid">
-      <article>
-        <p class="eyebrow">Натяжные потолки</p>
-        <h2>От замера до чистого монтажа</h2>
-        <p>Подберём конструкцию и свет, подготовим точный расчёт и согласуем дату установки.</p>
-        <RouterLink class="text-link" to="/contacts?intent=ceiling-measure#request">
-          {{ leadIntents['ceiling-measure'].shortLabel }}
+  <section class="section section--dark">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Портфолио"
+        title="Результат видно сразу"
+        description="Показываем реальные объекты без визуализаций и чужих фотографий."
+      />
+
+      <div class="portfolio-grid portfolio-grid--featured">
+        <PortfolioCard
+          v-for="(project, index) in featuredProjects"
+          :key="project.id"
+          :project="project"
+          :priority="index === 0"
+        />
+      </div>
+
+      <div class="section-action">
+        <RouterLink class="button button--light" to="/portfolio">Открыть всё портфолио</RouterLink>
+      </div>
+    </div>
+  </section>
+
+  <section class="section process">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Как работаем"
+        title="Понятный путь до результата"
+        description="Разные услуги начинаются по-разному, но на каждом этапе вы понимаете, что будет дальше."
+      />
+      <ol class="process-list">
+        <li v-for="step in processSteps" :key="step.number">
+          <span>{{ step.number }}</span>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.description }}</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--muted">
+    <div class="container">
+      <SectionHeading eyebrow="Вопросы" title="Коротко о главном" />
+      <div class="faq-list">
+        <details v-for="item in faq" :key="item.question">
+          <summary>{{ item.question }} <span aria-hidden="true">+</span></summary>
+          <p>{{ item.answer }}</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container cta-panel">
+      <div>
+        <p class="eyebrow">Начнём с вашей задачи</p>
+        <h2>Потолок — на замер.<br />Тонировка — на консультацию.</h2>
+      </div>
+      <div class="cta-panel__actions">
+        <RouterLink class="button" to="/contacts?intent=ceiling-measure#request">
+          {{ leadIntents['ceiling-measure'].label }}
         </RouterLink>
-      </article>
-      <article>
-        <p class="eyebrow">Тонировка</p>
-        <h2>Сначала консультация</h2>
-        <p>Уточним задачу, предложим подходящий вариант и заранее объясним условия работы.</p>
-        <RouterLink class="text-link" to="/contacts?intent=tinting-consultation#request">
-          {{ leadIntents['tinting-consultation'].shortLabel }}
+        <RouterLink
+          class="button button--secondary"
+          to="/contacts?intent=tinting-consultation#request"
+        >
+          {{ leadIntents['tinting-consultation'].label }}
         </RouterLink>
-      </article>
+        <a class="phone-link" :href="business.phone.href">{{ business.phone.display }}</a>
+      </div>
     </div>
   </section>
 </template>
