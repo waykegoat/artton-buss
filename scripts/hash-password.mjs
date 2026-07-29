@@ -10,7 +10,8 @@ if (password.length < 12) {
   throw new Error('Пароль должен содержать не менее 12 символов')
 }
 
-const iterations = 210_000
+// Cloudflare Workers supports PBKDF2 with up to 100 000 iterations.
+const iterations = 100_000
 const salt = randomBytes(16)
 const hash = pbkdf2Sync(password, salt, iterations, 32, 'sha256')
 
