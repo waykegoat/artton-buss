@@ -3,6 +3,9 @@
   "name": "artton58",
   "main": "./.worker/index.js",
   "compatibility_date": "2026-07-29",
+  "vars": {
+    "PUBLIC_SITE_ORIGINS": "https://waykegoat.github.io",
+  },
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",

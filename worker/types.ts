@@ -6,6 +6,7 @@ export interface Env {
   SESSION_SECRET?: string
   TELEGRAM_BOT_TOKEN?: string
   TELEGRAM_CHAT_ID?: string
+  PUBLIC_SITE_ORIGINS?: string
 }
 
 export interface SessionPayload {

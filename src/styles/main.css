@@ -291,6 +291,7 @@ button:focus-visible {
 .hero__actions {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 1.5rem;
 }
 
@@ -920,6 +921,47 @@ button:focus-visible {
 .contact-direct p {
   margin-bottom: 0;
   color: rgb(255 255 255 / 62%);
+}
+
+.contact-direct__social,
+.contact-social-actions,
+.social-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.contact-direct__social {
+  margin-top: 1.5rem;
+}
+
+.contact-direct__social a,
+.contact-social-actions a,
+.social-actions a {
+  display: inline-flex;
+  min-height: 2.8rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1rem;
+  border: 1px solid rgb(81 65 216 / 22%);
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 800;
+}
+
+.contact-direct__social a {
+  color: #fff;
+  border-color: rgb(255 255 255 / 28%);
+}
+
+.contact-social-actions {
+  margin-top: 1.5rem;
+}
+
+.contact-social-actions a,
+.social-actions a {
+  color: var(--color-primary-deep);
+  background: var(--color-surface);
 }
 
 .contact-section__grid {

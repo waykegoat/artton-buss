@@ -3,7 +3,7 @@ import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
-import { leadIntents } from '@/config/business'
+import { business } from '@/config/business'
 import { assetUrl } from '@/utils/url'
 
 const { t } = useI18n()
@@ -56,9 +56,7 @@ watch(() => route.path, closeMenu)
         </RouterLink>
       </nav>
 
-      <RouterLink class="button button--small header-cta" to="/contacts#request">
-        {{ leadIntents['ceiling-measure'].shortLabel }}
-      </RouterLink>
+      <a class="button button--small header-cta" :href="business.phone.href">Позвонить</a>
     </div>
   </header>
 </template>

@@ -30,6 +30,32 @@ function clientIp(request: Request): string {
   return request.headers.get('cf-connecting-ip') ?? 'local'
 }
 
+function isAllowedPublicOrigin(request: Request, env: Env): boolean {
+  const origin = request.headers.get('origin')
+  if (!origin) return false
+  if (origin === new URL(request.url).origin) return true
+
+  return (env.PUBLIC_SITE_ORIGINS ?? '')
+    .split(',')
+    .map((value) => value.trim())
+    .includes(origin)
+}
+
+function withPublicCors(request: Request, env: Env, response: Response): Response {
+  if (!isAllowedPublicOrigin(request, env)) return response
+
+  const headers = new Headers(response.headers)
+  headers.set('access-control-allow-origin', request.headers.get('origin') ?? '')
+  headers.set('access-control-allow-methods', 'GET, POST, OPTIONS')
+  headers.set('access-control-allow-headers', 'content-type')
+  headers.set('vary', 'origin')
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  })
+}
+
 async function audit(
   env: Env,
   actor: string,
@@ -141,7 +167,7 @@ async function handleAdminContent(request: Request, env: Env): Promise<Response>
 
 async function handleCreateLead(request: Request, env: Env): Promise<Response> {
   if (request.method !== 'POST') return methodNotAllowed()
-  if (!requireSameOrigin(request)) return json({ error: 'Invalid origin' }, 403)
+  if (!isAllowedPublicOrigin(request, env)) return json({ error: 'Invalid origin' }, 403)
 
   let body: LeadPayload
   try {
@@ -278,6 +304,10 @@ async function handleApi(request: Request, env: Env): Promise<Response> {
   const url = new URL(request.url)
   const path = url.pathname
 
+  if (request.method === 'OPTIONS' && ['/api/content', '/api/leads'].includes(path)) {
+    return noContent()
+  }
+
   if (path === '/api/auth/login') return handleLogin(request, env)
   if (path === '/api/auth/logout') return handleLogout(request, env)
   if (path === '/api/auth/session') return handleSession(request, env)
@@ -355,7 +385,12 @@ export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     try {
       const path = new URL(request.url).pathname
-      if (path.startsWith('/api/')) return await handleApi(request, env)
+      if (path.startsWith('/api/')) {
+        const response = await handleApi(request, env)
+        return ['/api/content', '/api/leads'].includes(path)
+          ? withPublicCors(request, env, response)
+          : response
+      }
       if (path === '/sitemap.xml') return handleSitemap(request)
       if (path === '/robots.txt') return handleRobots(request)
       return await handleAssets(request, env)

@@ -1,16 +1,8 @@
 <script setup lang="ts">
 import { useSeoMeta } from '@unhead/vue'
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
-
 import LeadForm from '@/components/forms/LeadForm.vue'
 import PageIntro from '@/components/ui/PageIntro.vue'
-import { business, type LeadIntent } from '@/config/business'
-
-const route = useRoute()
-const initialIntent = computed<LeadIntent>(() =>
-  route.query.intent === 'tinting-consultation' ? 'tinting-consultation' : 'ceiling-measure',
-)
+import { business } from '@/config/business'
 
 useSeoMeta({
   title: 'Контакты и запись',
@@ -30,6 +22,10 @@ useSeoMeta({
         <span>Позвонить</span>
         <a :href="business.phone.href">{{ business.phone.display }}</a>
         <p>{{ business.coverageLabel }}</p>
+        <div class="contact-direct__social">
+          <a :href="business.social.vk" target="_blank" rel="noopener noreferrer">Мы в VK</a>
+          <a :href="business.social.max" target="_blank" rel="noopener noreferrer">Мы в MAX</a>
+        </div>
       </div>
     </template>
   </PageIntro>
@@ -37,17 +33,21 @@ useSeoMeta({
   <section id="request" class="section section--muted contact-section">
     <div class="container contact-section__grid">
       <div>
-        <p class="eyebrow">Заявка</p>
-        <h2>Выберите направление</h2>
+        <p class="eyebrow">Быстрая связь</p>
+        <h2>Позвоните или напишите нам</h2>
         <p>
-          Оставьте номер телефона и короткий комментарий. Мы используем данные только для ответа на
-          заявку.
+          Можно оставить заявку — мы перезвоним. А если удобнее написать прямо сейчас, переходите в
+          VK или MAX.
         </p>
+        <div class="contact-social-actions" aria-label="Написать Art Ton">
+          <a :href="business.social.vk" target="_blank" rel="noopener noreferrer">Мы в VK</a>
+          <a :href="business.social.max" target="_blank" rel="noopener noreferrer">Мы в MAX</a>
+        </div>
         <ul class="contact-area-list">
           <li v-for="area in business.serviceAreas" :key="area">{{ area }}</li>
         </ul>
       </div>
-      <LeadForm :initial-intent="initialIntent" />
+      <LeadForm />
     </div>
   </section>
 </template>

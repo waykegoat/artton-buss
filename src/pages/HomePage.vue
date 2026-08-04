@@ -3,7 +3,7 @@ import { useSeoMeta } from '@unhead/vue'
 
 import PortfolioCard from '@/components/portfolio/PortfolioCard.vue'
 import SectionHeading from '@/components/ui/SectionHeading.vue'
-import { business, leadIntents } from '@/config/business'
+import { business } from '@/config/business'
 import { faq, portfolio, processSteps, services } from '@/content/site'
 import { useContentStore } from '@/stores/content'
 import { assetUrl } from '@/utils/url'
@@ -36,10 +36,23 @@ useSeoMeta({
           с вашей задачи, а не с готового шаблона.
         </p>
         <div class="hero__actions">
-          <RouterLink class="button" to="/contacts?intent=ceiling-measure#request">
-            {{ leadIntents['ceiling-measure'].label }}
-          </RouterLink>
-          <RouterLink class="text-link" to="/portfolio">Смотреть реальные работы</RouterLink>
+          <a class="button" :href="business.phone.href">Позвонить</a>
+          <a
+            class="button button--secondary"
+            :href="business.social.vk"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Мы в VK
+          </a>
+          <a
+            class="button button--secondary"
+            :href="business.social.max"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Мы в MAX
+          </a>
         </div>
         <ul class="hero__facts" aria-label="Основные преимущества">
           <li>{{ contentStore.content.facts.experienceYears }} лет опыта</li>
@@ -164,15 +177,11 @@ useSeoMeta({
         <h2>Потолок — на замер.<br />Тонировка — на консультацию.</h2>
       </div>
       <div class="cta-panel__actions">
-        <RouterLink class="button" to="/contacts?intent=ceiling-measure#request">
-          {{ leadIntents['ceiling-measure'].label }}
-        </RouterLink>
-        <RouterLink
-          class="button button--secondary"
-          to="/contacts?intent=tinting-consultation#request"
-        >
-          {{ leadIntents['tinting-consultation'].label }}
-        </RouterLink>
+        <a class="button" :href="business.phone.href">Позвонить</a>
+        <div class="social-actions">
+          <a :href="business.social.vk" target="_blank" rel="noopener noreferrer">Мы в VK</a>
+          <a :href="business.social.max" target="_blank" rel="noopener noreferrer">Мы в MAX</a>
+        </div>
         <a class="phone-link" :href="business.phone.href">{{ business.phone.display }}</a>
       </div>
     </div>
