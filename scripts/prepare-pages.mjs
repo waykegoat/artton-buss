@@ -5,11 +5,7 @@ import process from 'node:process'
 const projectRoot = resolve(import.meta.dirname, '..')
 const outputDirectory = resolve(projectRoot, 'dist')
 const publicRoutes = ['services', 'portfolio', 'contacts']
-const basePath = (process.env.VITE_BASE_PATH ?? '/').replace(/\/$/, '')
-const siteUrl = (process.env.VITE_SITE_URL ?? `https://waykegoat.github.io${basePath}`).replace(
-  /\/$/,
-  '',
-)
+const siteUrl = (process.env.VITE_SITE_URL ?? 'https://artton58.ru').replace(/\/$/, '')
 const socialImageUrl = `${siteUrl}/og.png`
 
 const pageSeo = {

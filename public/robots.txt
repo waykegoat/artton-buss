@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /artton-buss/admin
+Disallow: /admin
 
-Sitemap: https://waykegoat.github.io/artton-buss/sitemap.xml
+Sitemap: https://artton58.ru/sitemap.xml

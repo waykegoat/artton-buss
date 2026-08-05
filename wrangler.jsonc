@@ -4,7 +4,7 @@
   "main": "./.worker/index.js",
   "compatibility_date": "2026-07-29",
   "vars": {
-    "PUBLIC_SITE_ORIGINS": "https://waykegoat.github.io",
+    "PUBLIC_SITE_ORIGINS": "https://artton58.ru,https://www.artton58.ru",
   },
   "assets": {
     "directory": "./dist",
